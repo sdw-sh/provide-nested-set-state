@@ -1,0 +1,23 @@
+{
+  "name": "provide-nested-set-state",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "tsc"
+  },
+  "keywords": [
+    "React",
+    "setState",
+    "nestedSetState"
+  ],
+  "author": "Stefan Dausend-Werner",
+  "license": "MIT",
+  "devDependencies": {
+    "install": "^0.13.0",
+    "npm": "^10.7.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
+}
