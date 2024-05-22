@@ -3,21 +3,24 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "test": "test",
-    "build": "tsc"
+    "build": "ts-node src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "React",
     "setState",
-    "nestedSetState"
+    "state-management"
   ],
   "author": "Stefan Dausend-Werner",
   "license": "MIT",
   "devDependencies": {
-    "install": "^0.13.0",
-    "npm": "^10.7.0",
-    "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "many-keys-map": "^2.0.1",
+    "memoize": "^10.0.0"
   }
 }
