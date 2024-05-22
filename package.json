@@ -2,10 +2,10 @@
   "name": "provide-nested-set-state",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "ts-node src/index",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -16,7 +16,6 @@
   "author": "Stefan Dausend-Werner",
   "license": "MIT",
   "devDependencies": {
-    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
