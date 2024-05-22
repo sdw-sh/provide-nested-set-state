@@ -159,30 +159,23 @@ export function rawProvideNestedSetState<OriginalType extends object>(
   rootUpdater: Dispatch<SetStateAction<OriginalType>>,
   ...keys: any[]
 ): Dispatch<SetStateAction<any>> {
-  console.debug(1);
   // @ts-ignore
   return function (setNestedStateAction: SetStateAction<any>) {
-    console.debug(2);
     // @ts-ignore
     rootUpdater((prevRootState) => {
-      console.debug(3);
       let nextNestedState: any;
       if (isFunction(setNestedStateAction)) {
-        console.debug(4);
         nextNestedState = setNestedStateAction(
           getByKeyArray(prevRootState, ...keys),
         );
       } else {
-        console.debug(5);
         nextNestedState = setNestedStateAction;
       }
-      console.debug(6);
       const finalState = recursiveDestructuringNestedUpdater(
         prevRootState,
         keys,
         nextNestedState,
       );
-      console.debug("finalState", finalState);
       return finalState;
     });
   };
