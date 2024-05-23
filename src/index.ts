@@ -1,5 +1,7 @@
 import memoize from "memoize";
 import ManyKeysMap from "many-keys-map";
+import { getByKeyArray } from "./getByKeyArray";
+import { recursiveDestructuringNestedUpdater } from "./recursiveDestructuringNestedUpdater";
 
 /* React types*/
 type Dispatch<A> = (value: A) => void;
@@ -7,50 +9,8 @@ type SetStateAction<S> = S | ((prevState: S) => S);
 
 export type SetState<T> = Dispatch<SetStateAction<T>>;
 
-function getByKeyArray<OriginalType extends object>(
-  original: OriginalType,
-  ...keys: any[]
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): any {
-  let result = original;
-  for (const key of keys) {
-    // @ts-ignore
-    result = result[key];
-  }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return result;
-}
-
-function isFunction<S>(
-  value: SetStateAction<S>,
-): value is (prevState: S) => S {
+function isFunction<S>(value: SetStateAction<S>): value is (prevState: S) => S {
   return typeof value === "function";
-}
-
-// TODO what about optional fields?
-function recursiveDestructuringNestedUpdater(
-  prevState: object | any[],
-  keyArray: (string | number | symbol)[],
-  finalNestedState: any,
-) {
-  const [key, ...remainingKeys] = keyArray;
-  const nextNestedState: any =
-    remainingKeys.length === 0
-      ? finalNestedState
-      : recursiveDestructuringNestedUpdater(
-        // @ts-ignore
-        prevState[key],
-        remainingKeys,
-        finalNestedState,
-      );
-  if (Array.isArray(prevState)) {
-    return prevState.map((item, index) =>
-      index === key ? nextNestedState : item,
-    );
-  } else {
-    // TODO check if this is an object, throw if it is not?
-    return { ...prevState, [key]: nextNestedState };
-  }
 }
 
 export function rawProvideNestedSetState<
